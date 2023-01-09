@@ -7,21 +7,28 @@ import com.severett.kotlinintro.model.Horse;
 import com.severett.kotlinintro.model.Pet;
 import com.severett.kotlinintro.model.PetType;
 import com.severett.kotlinintro.repo.PetRepo;
+import jakarta.annotation.PostConstruct;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
 @AllArgsConstructor
+@Slf4j
 public class PetService {
     private static final String NAME_FIELD = "name";
     private static final String CLAW_LENGTH_FIELD = "clawLength";
     private static final String TAIL_LENGTH_FIELD = "tailLength";
     private static final String HOOF_WIDTH_FIELD = "hoofWidth";
 
+    private final String serviceName;
     private final PetRepo petRepo;
+
+    @PostConstruct
+    public void postConstruct() {
+        log.info(serviceName + " has been constructed!");
+    }
 
     public Pet get(PetType type, int id) {
         return petRepo.get(type, id);
