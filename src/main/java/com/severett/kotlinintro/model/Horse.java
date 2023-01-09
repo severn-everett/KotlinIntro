@@ -1,8 +1,6 @@
 package com.severett.kotlinintro.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,15 +19,9 @@ public class Horse extends Pet {
         this.hoofWidth = hoofWidth;
     }
 
-    public String neigh() {
-        return "Neighs";
-    }
-
-    @Transient
-    @JsonIgnore
     @Override
-    public PetType getType() {
-        return PetType.horse;
+    public String getSound() {
+        return "Neighs";
     }
 
     @Override
