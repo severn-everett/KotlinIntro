@@ -11,5 +11,5 @@ VALUES ('Missy', 15.75),
        ('Chestnut', 22.15);
 
 INSERT INTO offered_service(name, price, discount)
-VALUES ('Bathing', 25.5, 0.0),
-       ('Checkup', 20.0, 0.0);
+VALUES ('Checkup', 25.5, 0.0),
+       ('Vaccines', 20.0, 0.0);
