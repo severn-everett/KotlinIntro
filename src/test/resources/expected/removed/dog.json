@@ -1,0 +1,38 @@
+{
+  "Cat": [
+    {
+      "id": 1,
+      "name": "Guido",
+      "clawLength": 2.25,
+      "sound": "Meows"
+    },
+    {
+      "id": 2,
+      "name": "Spot",
+      "clawLength": 3.25,
+      "sound": "Meows"
+    }
+  ],
+  "Dog": [
+    {
+      "id": 2,
+      "name": "Fido",
+      "tailLength": 18.5,
+      "sound": "Barks"
+    }
+  ],
+  "Horse": [
+    {
+      "id": 1,
+      "name": "Missy",
+      "hoofWidth": 15.75,
+      "sound": "Neighs"
+    },
+    {
+      "id": 2,
+      "name": "Chestnut",
+      "hoofWidth": 22.15,
+      "sound": "Neighs"
+    }
+  ]
+}

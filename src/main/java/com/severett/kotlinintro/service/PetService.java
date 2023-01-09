@@ -8,6 +8,7 @@ import com.severett.kotlinintro.model.Pet;
 import com.severett.kotlinintro.model.PetType;
 import com.severett.kotlinintro.repo.PetRepo;
 import jakarta.annotation.PostConstruct;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,15 +39,17 @@ public class PetService {
         return petRepo.getAll();
     }
 
-    public void create(PetType type, Map<String, Object> data) throws InternalException {
+    @Transactional
+    public Pet create(PetType type, Map<String, Object> data) throws InternalException {
         Pet petToCreate = switch (type) {
             case cat -> new Cat(0, (String) data.get(NAME_FIELD), (Double) data.get(CLAW_LENGTH_FIELD));
             case dog -> new Dog(0, (String) data.get(NAME_FIELD), (Double) data.get(TAIL_LENGTH_FIELD));
             case horse -> new Horse(0, (String) data.get(NAME_FIELD), (Double) data.get(HOOF_WIDTH_FIELD));
         };
-        petRepo.save(petToCreate);
+        return petRepo.save(petToCreate);
     }
 
+    @Transactional
     public void delete(PetType type, int id) {
         petRepo.delete(type, id);
     }

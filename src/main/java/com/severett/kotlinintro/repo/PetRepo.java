@@ -37,13 +37,13 @@ public class PetRepo {
         return pets;
     }
 
-    public void save(Pet pet) throws InternalException {
+    public Pet save(Pet pet) throws InternalException {
         if (pet instanceof Dog dog) {
-            dogRepo.save(dog);
+            return dogRepo.save(dog);
         } else if (pet instanceof Cat cat) {
-            catRepo.save(cat);
+            return catRepo.save(cat);
         } else if (pet instanceof Horse horse) {
-            horseRepo.save(horse);
+            return horseRepo.save(horse);
         } else {
             throw new InternalException("No repository found for class '" + Pet.class + "'");
         }
