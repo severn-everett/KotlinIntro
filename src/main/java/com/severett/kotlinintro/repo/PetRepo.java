@@ -8,8 +8,13 @@ import com.severett.kotlinintro.model.Horse;
 import com.severett.kotlinintro.model.Pet;
 import com.severett.kotlinintro.model.PetType;
 import lombok.AllArgsConstructor;
+import org.apache.commons.collections4.IterableUtils;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 @AllArgsConstructor
@@ -22,6 +27,14 @@ public class PetRepo {
         var pet = findRepo(type).findById(id);
 
         return pet.orElseThrow(() -> new EntityNotFoundException("No pet of type '" + type + "' with id " + id + " found"));
+    }
+
+    public Map<String, List<? extends Pet>> getAll() {
+        var pets = new LinkedHashMap<String, List<? extends Pet>>();
+        pets.put(PetType.cat.getDisplayName(), IterableUtils.toList(catRepo.findAll()));
+        pets.put(PetType.dog.getDisplayName(), IterableUtils.toList(dogRepo.findAll()));
+        pets.put(PetType.horse.getDisplayName(), IterableUtils.toList(horseRepo.findAll()));
+        return pets;
     }
 
     public void save(Pet pet) throws InternalException {
