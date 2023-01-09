@@ -14,11 +14,11 @@ import lombok.Setter;
 public class Horse extends Pet {
     private static final int HASHCODE = Horse.class.hashCode();
 
-    private double hoofSize;
+    private double hoofWidth;
 
-    public Horse(int id, String name, double hoofSize) {
+    public Horse(int id, String name, double hoofWidth) {
         super(id, name);
-        this.hoofSize = hoofSize;
+        this.hoofWidth = hoofWidth;
     }
 
     public String neigh() {

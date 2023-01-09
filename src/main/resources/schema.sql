@@ -22,5 +22,5 @@ CREATE TABLE horse
 (
     id        INT AUTO_INCREMENT PRIMARY KEY,
     name      VARCHAR(255)     NOT NULL,
-    hoof_size DOUBLE PRECISION NOT NULL
+    hoof_width DOUBLE PRECISION NOT NULL
 );

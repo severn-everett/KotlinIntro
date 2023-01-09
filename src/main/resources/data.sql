@@ -6,6 +6,6 @@ INSERT INTO dog(name, tail_length)
 VALUES ('Jacob', 15.5),
        ('Fido', 18.5);
 
-INSERT INTO horse(name, hoof_size)
+INSERT INTO horse(name, hoof_width)
 VALUES ('Missy', 15.75),
        ('Chestnut', 22.15);

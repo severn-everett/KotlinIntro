@@ -15,4 +15,8 @@ public class PetService {
     public Pet get(PetType type, int id) throws EntityNotFoundException {
         return petRepo.get(type, id);
     }
+
+    public void delete(PetType type, int id) {
+        petRepo.delete(type, id);
+    }
 }
