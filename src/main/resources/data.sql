@@ -9,3 +9,7 @@ VALUES ('Jacob', 15.5),
 INSERT INTO horse(name, hoof_width)
 VALUES ('Missy', 15.75),
        ('Chestnut', 22.15);
+
+INSERT INTO offered_service(name, price, discount)
+VALUES ('Bathing', 25.5, 0.0),
+       ('Checkup', 20.0, 0.0);

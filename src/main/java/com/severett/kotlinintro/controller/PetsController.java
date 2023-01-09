@@ -1,6 +1,5 @@
 package com.severett.kotlinintro.controller;
 
-import com.severett.kotlinintro.exception.EntityNotFoundException;
 import com.severett.kotlinintro.exception.InternalException;
 import com.severett.kotlinintro.model.Pet;
 import com.severett.kotlinintro.model.PetType;
@@ -29,7 +28,7 @@ public class PetsController {
     private final PetService petService;
 
     @GetMapping("/{type}/{id}")
-    public Pet get(@PathVariable PetType type, @PathVariable int id) throws EntityNotFoundException {
+    public Pet get(@PathVariable PetType type, @PathVariable int id) {
         return petService.get(type, id);
     }
 

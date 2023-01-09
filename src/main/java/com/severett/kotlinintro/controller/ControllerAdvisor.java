@@ -1,7 +1,7 @@
 package com.severett.kotlinintro.controller;
 
-import com.severett.kotlinintro.exception.EntityNotFoundException;
 import com.severett.kotlinintro.exception.InternalException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

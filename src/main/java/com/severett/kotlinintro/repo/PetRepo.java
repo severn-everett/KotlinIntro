@@ -1,12 +1,12 @@
 package com.severett.kotlinintro.repo;
 
-import com.severett.kotlinintro.exception.EntityNotFoundException;
 import com.severett.kotlinintro.exception.InternalException;
 import com.severett.kotlinintro.model.Cat;
 import com.severett.kotlinintro.model.Dog;
 import com.severett.kotlinintro.model.Horse;
 import com.severett.kotlinintro.model.Pet;
 import com.severett.kotlinintro.model.PetType;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.apache.commons.collections4.IterableUtils;
 import org.springframework.data.repository.CrudRepository;
@@ -23,7 +23,7 @@ public class PetRepo {
     private final DogRepo dogRepo;
     private final HorseRepo horseRepo;
 
-    public Pet get(PetType type, int id) throws EntityNotFoundException {
+    public Pet get(PetType type, int id) {
         var pet = findRepo(type).findById(id);
 
         return pet.orElseThrow(() -> new EntityNotFoundException("No pet of type '" + type + "' with id " + id + " found"));

@@ -1,6 +1,5 @@
 package com.severett.kotlinintro.service;
 
-import com.severett.kotlinintro.exception.EntityNotFoundException;
 import com.severett.kotlinintro.exception.InternalException;
 import com.severett.kotlinintro.model.Cat;
 import com.severett.kotlinintro.model.Dog;
@@ -24,7 +23,7 @@ public class PetService {
 
     private final PetRepo petRepo;
 
-    public Pet get(PetType type, int id) throws EntityNotFoundException {
+    public Pet get(PetType type, int id) {
         return petRepo.get(type, id);
     }
 
