@@ -31,7 +31,7 @@ public class PetService {
         log.info(serviceName + " has been constructed!");
     }
 
-    public Pet get(PetType type, int id) {
+    public Pet get(PetType type, int id) throws InternalException {
         return petRepo.get(type, id);
     }
 
@@ -41,16 +41,18 @@ public class PetService {
 
     @Transactional
     public Pet create(PetType type, Map<String, Object> data) throws InternalException {
-        Pet petToCreate = switch (type) {
-            case cat -> new Cat(0, (String) data.get(NAME_FIELD), (Double) data.get(CLAW_LENGTH_FIELD));
-            case dog -> new Dog(0, (String) data.get(NAME_FIELD), (Double) data.get(TAIL_LENGTH_FIELD));
-            case horse -> new Horse(0, (String) data.get(NAME_FIELD), (Double) data.get(HOOF_WIDTH_FIELD));
-        };
+        Pet petToCreate;
+        switch (type) {
+            case cat: petToCreate = new Cat(0, (String) data.get(NAME_FIELD), (Double) data.get(CLAW_LENGTH_FIELD)); break;
+            case dog: petToCreate = new Dog(0, (String) data.get(NAME_FIELD), (Double) data.get(TAIL_LENGTH_FIELD)); break;
+            case horse: petToCreate = new Horse(0, (String) data.get(NAME_FIELD), (Double) data.get(HOOF_WIDTH_FIELD)); break;
+            default: throw new InternalException("Unrecognized type '" + type + "'");
+        }
         return petRepo.save(petToCreate);
     }
 
     @Transactional
-    public void delete(PetType type, int id) {
+    public void delete(PetType type, int id) throws InternalException {
         petRepo.delete(type, id);
     }
 }

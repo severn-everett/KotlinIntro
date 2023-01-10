@@ -24,11 +24,4 @@ public abstract class Pet {
 
     @SuppressWarnings("unused")
     public abstract String getSound();
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Pet pet)) return false;
-        return id == pet.id;
-    }
 }

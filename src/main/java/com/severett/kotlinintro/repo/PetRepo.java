@@ -23,7 +23,7 @@ public class PetRepo {
     private final DogRepo dogRepo;
     private final HorseRepo horseRepo;
 
-    public Pet get(PetType type, int id) {
+    public Pet get(PetType type, int id) throws InternalException {
         var pet = findRepo(type).findById(id);
 
         return pet.orElseThrow(() -> new EntityNotFoundException("No pet of type '" + type + "' with id " + id + " found"));
@@ -38,26 +38,27 @@ public class PetRepo {
     }
 
     public Pet save(Pet pet) throws InternalException {
-        if (pet instanceof Dog dog) {
-            return dogRepo.save(dog);
-        } else if (pet instanceof Cat cat) {
-            return catRepo.save(cat);
-        } else if (pet instanceof Horse horse) {
-            return horseRepo.save(horse);
+        if (pet instanceof Cat) {
+            return catRepo.save((Cat) pet);
+        } else if (pet instanceof Dog) {
+            return dogRepo.save((Dog) pet);
+        } else if (pet instanceof Horse) {
+            return horseRepo.save((Horse) pet);
         } else {
             throw new InternalException("No repository found for class '" + Pet.class + "'");
         }
     }
 
-    public void delete(PetType type, int id) {
+    public void delete(PetType type, int id) throws InternalException {
         findRepo(type).deleteById(id);
     }
 
-    private CrudRepository<? extends Pet, Integer> findRepo(PetType type) {
-        return switch (type) {
-            case dog -> dogRepo;
-            case cat -> catRepo;
-            case horse -> horseRepo;
-        };
+    private CrudRepository<? extends Pet, Integer> findRepo(PetType type) throws InternalException {
+        switch (type) {
+            case cat: return catRepo;
+            case dog: return dogRepo;
+            case horse: return horseRepo;
+            default: throw new InternalException("No repository found for type '" + type + "'");
+        }
     }
 }

@@ -25,6 +25,13 @@ public class Dog extends Pet {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Dog)) return false;
+        return getId() == ((Dog) o).getId();
+    }
+
+    @Override
     public int hashCode() {
         return HASHCODE;
     }

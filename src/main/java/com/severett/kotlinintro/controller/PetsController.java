@@ -31,7 +31,7 @@ public class PetsController {
     private final PetService petService;
 
     @GetMapping("/{type}/{id}")
-    public Pet get(@PathVariable PetType type, @PathVariable int id) {
+    public Pet get(@PathVariable PetType type, @PathVariable int id) throws InternalException {
         return petService.get(type, id);
     }
 
@@ -48,7 +48,7 @@ public class PetsController {
 
     @DeleteMapping("/{type}/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable PetType type, @PathVariable int id) {
+    public void delete(@PathVariable PetType type, @PathVariable int id) throws InternalException {
         petService.delete(type, id);
     }
 }
