@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_19
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("java")
     kotlin("jvm") version "1.8.0"
@@ -27,6 +30,11 @@ dependencies {
 }
 
 tasks {
+    withType(KotlinCompile::class.java).configureEach {
+        compilerOptions {
+            jvmTarget.set(JVM_19)
+        }
+    }
     test {
         useJUnitPlatform()
     }
