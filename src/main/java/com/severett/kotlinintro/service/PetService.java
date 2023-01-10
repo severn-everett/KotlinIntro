@@ -9,13 +9,11 @@ import com.severett.kotlinintro.model.PetType;
 import com.severett.kotlinintro.repo.PetRepo;
 import jakarta.annotation.PostConstruct;
 import jakarta.transaction.Transactional;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Map;
 
-@AllArgsConstructor
 @Slf4j
 public class PetService {
     private static final String NAME_FIELD = "name";
@@ -25,6 +23,11 @@ public class PetService {
 
     private final String serviceName;
     private final PetRepo petRepo;
+
+    public PetService(String serviceName, PetRepo petRepo) {
+        this.serviceName = serviceName;
+        this.petRepo = petRepo;
+    }
 
     @PostConstruct
     public void postConstruct() {
