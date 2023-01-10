@@ -87,10 +87,10 @@ public class OfferedServiceControllerTest {
         when(offeredServiceService.setDiscount(new OfferedServiceService.SetDiscountRequest(id, discount)))
                 .thenReturn(expectedOfferedService);
 
-        var dishResponse = offeredServiceController.setDiscount(id, discount);
+        var offeredServiceResponse = offeredServiceController.setDiscount(id, discount);
         assertAll(
-                () -> assertEquals(HttpStatus.OK, dishResponse.getStatusCode()),
-                () -> assertEquals(expectedOfferedService, dishResponse.getBody())
+                () -> assertEquals(HttpStatus.OK, offeredServiceResponse.getStatusCode()),
+                () -> assertEquals(expectedOfferedService, offeredServiceResponse.getBody())
         );
     }
 
@@ -102,10 +102,10 @@ public class OfferedServiceControllerTest {
         when(offeredServiceService.setDiscount(new OfferedServiceService.SetDiscountRequest(id, discount)))
                 .thenThrow(thrownException);
 
-        var dishResponse = offeredServiceController.setDiscount(id, discount);
+        var offeredServiceResponse = offeredServiceController.setDiscount(id, discount);
         assertAll(
-                () -> assertEquals(expectedStatus, dishResponse.getStatusCode()),
-                () -> assertFalse(dishResponse.hasBody())
+                () -> assertEquals(expectedStatus, offeredServiceResponse.getStatusCode()),
+                () -> assertFalse(offeredServiceResponse.hasBody())
         );
     }
 
