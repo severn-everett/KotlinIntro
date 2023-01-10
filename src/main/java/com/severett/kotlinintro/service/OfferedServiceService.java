@@ -5,11 +5,11 @@ import com.severett.kotlinintro.repo.OfferedServiceRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -41,17 +41,63 @@ public class OfferedServiceService {
         return offeredServiceRepo.save(newOfferedService);
     }
 
-    @AllArgsConstructor
-    @Value
     public static class CreateOfferedServiceRequest {
-        String name;
-        BigDecimal price;
+        private final String name;
+        private final BigDecimal price;
+
+        public CreateOfferedServiceRequest(String name, BigDecimal price) {
+            this.name = name;
+            this.price = price;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public BigDecimal getPrice() {
+            return price;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof CreateOfferedServiceRequest that)) return false;
+            return getName().equals(that.getName()) && getPrice().equals(that.getPrice());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getName(), getPrice());
+        }
     }
 
-    @AllArgsConstructor
-    @Value
     public static class SetDiscountRequest {
-        int id;
-        BigDecimal discount;
+        private final int id;
+        private final BigDecimal discount;
+
+        public SetDiscountRequest(int id, BigDecimal discount) {
+            this.id = id;
+            this.discount = discount;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public BigDecimal getDiscount() {
+            return discount;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof SetDiscountRequest that)) return false;
+            return getId() == that.getId() && getDiscount().equals(that.getDiscount());
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(getId(), getDiscount());
+        }
     }
 }
