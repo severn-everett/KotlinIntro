@@ -83,7 +83,12 @@ public class OfferedServiceControllerTest {
     public void setDiscountTest() {
         var id = 1;
         var discount = BigDecimal.valueOf(5.5);
-        var expectedOfferedService = OFFERED_SERVICE_ONE.toBuilder().discount(discount).build();
+        var expectedOfferedService = OFFERED_SERVICE_ONE.copy(
+                OFFERED_SERVICE_ONE.getId(),
+                OFFERED_SERVICE_ONE.getName(),
+                OFFERED_SERVICE_ONE.getPrice(),
+                discount
+        );
         when(offeredServiceService.setDiscount(new OfferedServiceService.SetDiscountRequest(id, discount)))
                 .thenReturn(expectedOfferedService);
 

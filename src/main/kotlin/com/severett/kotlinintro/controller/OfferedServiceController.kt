@@ -33,7 +33,7 @@ open class OfferedServiceController(private val offeredServiceService: OfferedSe
 
     @PostMapping
     open fun createOfferedService(
-        @RequestBody request: CreateOfferedServiceRequest?
+        @RequestBody request: CreateOfferedServiceRequest
     ): ResponseEntity<OfferedService> {
         return try {
             ResponseEntity<OfferedService>(offeredServiceService.createOfferedService(request), HttpStatus.CREATED)

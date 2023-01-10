@@ -6,10 +6,10 @@ public class OfferedServiceConstants {
     private OfferedServiceConstants() {
     }
 
-    public static final OfferedService OFFERED_SERVICE_ONE = OfferedService.builder()
-            .id(1)
-            .name("Check-Up")
-            .price(BigDecimal.TEN)
-            .discount(BigDecimal.ZERO)
-            .build();
+    public static final OfferedService OFFERED_SERVICE_ONE = new OfferedService(
+            1,
+            "Check-Up",
+            BigDecimal.TEN,
+            BigDecimal.ZERO
+    );
 }

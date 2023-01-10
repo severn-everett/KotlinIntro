@@ -64,7 +64,12 @@ public class OfferedServiceServiceTest {
                 discount
         );
         var savedOfferedService = offeredServiceService.setDiscount(request);
-        var expectedOfferedService = OFFERED_SERVICE_ONE.toBuilder().discount(discount).build();
+        var expectedOfferedService = OFFERED_SERVICE_ONE.copy(
+                OFFERED_SERVICE_ONE.getId(),
+                OFFERED_SERVICE_ONE.getName(),
+                OFFERED_SERVICE_ONE.getPrice(),
+                discount
+        );
         assertEquals(expectedOfferedService, savedOfferedService);
     }
 
