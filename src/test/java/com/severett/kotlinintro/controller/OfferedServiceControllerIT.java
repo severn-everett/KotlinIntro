@@ -40,7 +40,7 @@ public class OfferedServiceControllerIT {
         var response = mvc.perform(get("/offered_services/1")).andReturn().getResponse();
         assertEquals(HttpStatus.OK.value(), response.getStatus());
         var body = objectMapper.readValue(response.getContentAsString(), OfferedService.class);
-        checkDish(body, CHECKUP_NAME, CHECKUP_PRICE, new BigDecimal("0.00"));
+        checkOfferedService(body, CHECKUP_NAME, CHECKUP_PRICE, new BigDecimal("0.00"));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class OfferedServiceControllerIT {
 
         assertEquals(HttpStatus.CREATED.value(), response.getStatus());
         var body = objectMapper.readValue(response.getContentAsString(), OfferedService.class);
-        checkDish(body, offeredServiceName, price, BigDecimal.ZERO);
+        checkOfferedService(body, offeredServiceName, price, BigDecimal.ZERO);
     }
 
     @Test
@@ -83,7 +83,7 @@ public class OfferedServiceControllerIT {
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
         var body = objectMapper.readValue(response.getContentAsString(), OfferedService.class);
-        checkDish(body, CHECKUP_NAME, CHECKUP_PRICE, discount);
+        checkOfferedService(body, CHECKUP_NAME, CHECKUP_PRICE, discount);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class OfferedServiceControllerIT {
         );
     }
 
-    private void checkDish(OfferedService offeredService, String name, BigDecimal price, BigDecimal discount) {
+    private void checkOfferedService(OfferedService offeredService, String name, BigDecimal price, BigDecimal discount) {
         assertAll(
                 () -> assertEquals(name, offeredService.getName()),
                 () -> assertEquals(price, offeredService.getPrice()),
