@@ -12,14 +12,14 @@ import org.springframework.util.StopWatch;
 @Slf4j
 public class LoggingAspect {
     private static final String LOG_MESSAGE_FORMAT_WITH_PARAM = "- Execution time of {}.{} with params: {} was: {} ms";
-    private static final String LOG_PERFORMANCE_DISH_CONTROLLER
+    private static final String LOG_PERFORMANCE_OFFERED_SERVICE_CONTROLLER
             = "PERFORMANCE_OFFERED_SERVICE_CONTROLLER " + LOG_MESSAGE_FORMAT_WITH_PARAM;
     private static final String LOG_PERFORMANCE_PETS_CONTROLLER
             = "PERFORMANCE_PETS_CONTROLLER " + LOG_MESSAGE_FORMAT_WITH_PARAM;
 
     @Around("execution(* com.severett.kotlinintro.controller.OfferedServiceController.*(..)))")
-    public Object logDishControllerExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
-        return logExecutionTime(joinPoint, LOG_PERFORMANCE_DISH_CONTROLLER);
+    public Object logOfferedServiceControllerExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+        return logExecutionTime(joinPoint, LOG_PERFORMANCE_OFFERED_SERVICE_CONTROLLER);
     }
 
     @Around("execution(* com.severett.kotlinintro.controller.PetsController.*(..)))")

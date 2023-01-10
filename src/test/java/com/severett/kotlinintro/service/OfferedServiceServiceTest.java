@@ -32,20 +32,20 @@ public class OfferedServiceServiceTest {
     }
 
     @Test
-    public void getDishTest() {
+    public void getOfferedServiceTest() {
         var offeredService = offeredServiceService.getOfferedService(1).get();
         assertEquals(OFFERED_SERVICE_ONE, offeredService);
     }
 
     @Test
-    public void dishNotFoundTest() {
+    public void offeredServiceNotFoundTest() {
         var offeredService = offeredServiceService.getOfferedService(5);
         assertEquals(Optional.empty(), offeredService);
     }
 
     @Test
-    public void createDishTest() {
-        var name = "Grooming";
+    public void createOfferedServiceTest() {
+        var name = "Vaccines";
         BigDecimal price = BigDecimal.valueOf(15);
         var savedOfferedService = offeredServiceService.createOfferedService(
                 new OfferedServiceService.CreateOfferedServiceRequest(name, price)

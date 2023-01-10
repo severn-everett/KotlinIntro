@@ -54,7 +54,7 @@ public class OfferedServiceController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
-            log.error("Unable to set discount for dish #{}", id, e);
+            log.error("Unable to set discount for offered service #{}", id, e);
             return ResponseEntity.internalServerError().build();
         }
     }
