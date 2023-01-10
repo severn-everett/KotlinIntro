@@ -36,7 +36,7 @@ public class PetsController {
     }
 
     @GetMapping()
-    public Map<String, List<? extends Pet>> getAll() {
+    public Map<String, List<Pet>> getAll() {
         return petService.getAll();
     }
 
