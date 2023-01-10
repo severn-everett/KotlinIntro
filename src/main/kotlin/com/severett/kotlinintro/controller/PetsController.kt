@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping(value = ["/pets"], produces = [MediaType.APPLICATION_JSON_VALUE])
 open class PetsController(private val petService: PetService) {
     @GetMapping("/{type}/{id}")
-    open operator fun get(@PathVariable type: PetType?, @PathVariable id: Int) = petService[type, id]
+    open fun get(@PathVariable type: PetType?, @PathVariable id: Int) = petService[type, id]
 
     @GetMapping
     open fun getAll() = petService.all
