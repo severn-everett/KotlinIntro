@@ -27,8 +27,8 @@ open class OfferedServiceController(private val offeredServiceService: OfferedSe
     @GetMapping("/{id}")
     open fun getOfferedService(@PathVariable id: Int): ResponseEntity<OfferedService> {
         return offeredServiceService.getOfferedService(id)
-            .map { ResponseEntity.ok(it) }
-            .orElse(ResponseEntity.notFound().build())
+            ?.let { ResponseEntity.ok(it) }
+            ?: ResponseEntity.notFound().build()
     }
 
     @PostMapping
@@ -50,7 +50,7 @@ open class OfferedServiceController(private val offeredServiceService: OfferedSe
             ResponseEntity.ok(offeredServiceService.setDiscount(request))
         } catch (e: EntityNotFoundException) {
             ResponseEntity.notFound().build()
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             log.error("Unable to set discount for offered service #{}", id, e)
             ResponseEntity.internalServerError().build()
         }

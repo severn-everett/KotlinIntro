@@ -16,7 +16,6 @@ repositories {
 
 dependencies {
     val junitVersion: String by project
-    implementation("org.apache.commons:commons-collections4:4.4")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     runtimeOnly("com.h2database:h2")

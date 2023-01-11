@@ -44,7 +44,7 @@ class OfferedServiceControllerTest {
     @Test
     fun getOfferedServiceTest() {
         val id = OFFERED_SERVICE_ONE.id
-        `when`(offeredServiceService.getOfferedService(id)).thenReturn(Optional.of(OFFERED_SERVICE_ONE))
+        `when`(offeredServiceService.getOfferedService(id)).thenReturn(OFFERED_SERVICE_ONE)
         val offeredServiceResponse = offeredServiceController.getOfferedService(id)
         assertAll(
             { assertEquals(HttpStatus.OK, offeredServiceResponse.statusCode) },
@@ -55,7 +55,7 @@ class OfferedServiceControllerTest {
     @Test
     fun getNonExistentOfferedServiceTest() {
         val id = OFFERED_SERVICE_ONE.id
-        `when`(offeredServiceService.getOfferedService(any())).thenReturn(Optional.empty())
+        `when`(offeredServiceService.getOfferedService(any())).thenReturn(null)
         val offeredServiceResponse = offeredServiceController.getOfferedService(id)
         assertAll(
             { assertEquals(HttpStatus.NOT_FOUND, offeredServiceResponse.statusCode) },

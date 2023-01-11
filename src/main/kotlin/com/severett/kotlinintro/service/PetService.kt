@@ -1,6 +1,5 @@
 package com.severett.kotlinintro.service
 
-import com.severett.kotlinintro.exception.InternalException
 import com.severett.kotlinintro.model.Cat
 import com.severett.kotlinintro.model.Dog
 import com.severett.kotlinintro.model.Horse

@@ -4,12 +4,13 @@ import com.severett.kotlinintro.model.OfferedService
 import com.severett.kotlinintro.repo.OfferedServiceRepo
 import jakarta.persistence.EntityNotFoundException
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 
 @Service
 open class OfferedServiceService(private val offeredServiceRepo: OfferedServiceRepo) {
-    open fun getOfferedService(id: Int) = offeredServiceRepo.findById(id)
+    open fun getOfferedService(id: Int) = offeredServiceRepo.findByIdOrNull(id)
 
     @Transactional
     open fun createOfferedService(request: CreateOfferedServiceRequest): OfferedService {
@@ -19,9 +20,9 @@ open class OfferedServiceService(private val offeredServiceRepo: OfferedServiceR
 
     @Transactional
     open fun setDiscount(request: SetDiscountRequest): OfferedService {
-        val newOfferedService = offeredServiceRepo.findById(request.id)
-            .map { it.copy(discount = request.discount) }
-            .orElseThrow { EntityNotFoundException("No offered service found with id ${request.id}") }
+        val newOfferedService = offeredServiceRepo.findByIdOrNull(request.id)
+            ?.copy(discount = request.discount)
+            ?: throw EntityNotFoundException("No offered service found with id ${request.id}")
         return offeredServiceRepo.save(newOfferedService)
     }
 

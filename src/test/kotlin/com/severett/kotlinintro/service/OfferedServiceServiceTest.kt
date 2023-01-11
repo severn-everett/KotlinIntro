@@ -1,6 +1,5 @@
 package com.severett.kotlinintro.service
 
-import com.severett.kotlinintro.model.OfferedService
 import com.severett.kotlinintro.model.OfferedServiceConstants.OFFERED_SERVICE_ONE
 import com.severett.kotlinintro.model.Pet
 import com.severett.kotlinintro.repo.OfferedServiceRepo
@@ -9,6 +8,7 @@ import com.severett.kotlinintro.service.OfferedServiceService.SetDiscountRequest
 import jakarta.persistence.EntityNotFoundException
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
@@ -33,14 +33,14 @@ class OfferedServiceServiceTest {
 
     @Test
     fun getOfferedServiceTest() {
-        val offeredService = offeredServiceService.getOfferedService(1).get()
+        val offeredService = offeredServiceService.getOfferedService(1)!!
         assertEquals(OFFERED_SERVICE_ONE, offeredService)
     }
 
     @Test
     fun offeredServiceNotFoundTest() {
         val offeredService = offeredServiceService.getOfferedService(5)
-        assertEquals(Optional.empty<OfferedService>(), offeredService)
+        assertNull(offeredService)
     }
 
     @Test
